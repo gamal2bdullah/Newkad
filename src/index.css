@@ -1,0 +1,308 @@
+@import "tailwindcss";
+@import "./core/theme/tokens.css";
+
+/* =======================================================================
+   KAD POWER — Visual Identity System
+   Source: KAD-Power-Logo-System.zip (Sections 3, 4, 5)
+   APPLIED GLOBALLY to every component and page.
+
+   TWO PRIMARY ANCHORS:
+     1. NAVY (#1A2B6B)   — structural, brand mark, dark text
+     2. SOLAR GREEN (#99F36C) — accent, energy, activity
+
+   USAGE RATIO: 60% neutral / 30% navy / 10% green
+   WCAG AA: 17.29:1 (white on Navy 900) | 12.68:1 (green on Navy 900)
+   ======================================================================= */
+
+/* -----------------------------------------------------------------------
+   TAILWIND v4 — Override the default theme palette so EVERY component
+   that uses Tailwind color utilities automatically receives the KAD
+   Power brand colors.
+
+   Mapping strategy (conservative — preserves semantic meaning):
+     • navy   = KAD Navy 500/900 ramp
+     • green  = KAD Solar Green ramp
+     • slate  = KAD Slate neutrals (H=227, S=16%)
+     • red    = semantic danger (kept — used for errors only)
+     • amber  = semantic warning (kept — used for warnings only)
+     • emerald = mapped to KAD green 600
+     • blue   = mapped to KAD navy 500 (the only blue in brand)
+     • white / black = pure neutrals
+   ----------------------------------------------------------------------- */
+@theme {
+  /* === KAD POWER NAVY (Primary Brand) === */
+  --color-navy-50:  #F4F4F8;
+  --color-navy-100: #E4E6ED;
+  --color-navy-200: #C3C8D9;
+  --color-navy-300: #9FA6C1;
+  --color-navy-400: #5F6B97;
+  --color-navy-500: #1A2B6B; /* ★ PRIMARY ANCHOR */
+  --color-navy-600: #18275F;
+  --color-navy-700: #162251;
+  --color-navy-800: #131E43;
+  --color-navy-900: #111935; /* ★ DEEPEST (text on light) */
+  --color-navy-950: #0a1024;
+
+  /* === KAD POWER SOLAR GREEN (Energy Accent) === */
+  --color-green-50:  #FAFEF8;
+  --color-green-100: #F3FEED;
+  --color-green-200: #E4FCD9;
+  --color-green-300: #D4FAC1;
+  --color-green-400: #B8F798;
+  --color-green-500: #99F36C; /* ★ PRIMARY ACCENT */
+  --color-green-600: #85D360;
+  --color-green-700: #6EAE52;
+  --color-green-800: #588A44;
+  --color-green-900: #416535;
+  --color-green-950: #2a4222;
+
+  /* === KAD POWER SLATE (Neutrals) === */
+  --color-slate-0:   #FFFFFF;
+  --color-slate-50:  #F6F7F9;
+  --color-slate-100: #EAEBF0;
+  --color-slate-200: #D6D8E1;
+  --color-slate-300: #B8BCCC;
+  --color-slate-400: #8F95AE;
+  --color-slate-500: #6B7494;
+  --color-slate-600: #565D76;
+  --color-slate-700: #404559;
+  --color-slate-800: #2D313E;
+  --color-slate-900: #1E2029;
+  --color-slate-950: #111318;
+
+  /* === SEMANTIC ALIASES — Tailwind tokens remapped to KAD Power === */
+  /* orange → KAD Solar Green 500 (the brand accent) */
+  --color-orange-50:  #FAFEF8;
+  --color-orange-100: #F3FEED;
+  --color-orange-200: #E4FCD9;
+  --color-orange-300: #D4FAC1;
+  --color-orange-400: #B8F798;
+  --color-orange-500: #99F36C; /* = Green 500 */
+  --color-orange-600: #85D360;
+  --color-orange-700: #6EAE52;
+  --color-orange-800: #588A44;
+  --color-orange-900: #416535;
+
+  /* amber → KAD Solar Green (deeper for emphasis) */
+  --color-amber-50:  #FAFEF8;
+  --color-amber-100: #F3FEED;
+  --color-amber-200: #E4FCD9;
+  --color-amber-300: #D4FAC1;
+  --color-amber-400: #B8F798;
+  --color-amber-500: #99F36C;
+  --color-amber-600: #85D360;
+  --color-amber-700: #6EAE52;
+  --color-amber-800: #588A44;
+  --color-amber-900: #416535;
+
+  /* emerald → KAD Green 600 (success/positive) */
+  --color-emerald-50:  #FAFEF8;
+  --color-emerald-100: #F3FEED;
+  --color-emerald-200: #E4FCD9;
+  --color-emerald-300: #D4FAC1;
+  --color-emerald-400: #B8F798;
+  --color-emerald-500: #99F36C;
+  --color-emerald-600: #85D360;
+  --color-emerald-700: #6EAE52;
+  --color-emerald-800: #588A44;
+  --color-emerald-900: #416535;
+
+  /* blue → KAD Navy (the only blue in brand identity) */
+  --color-blue-50:  #F4F4F8;
+  --color-blue-100: #E4E6ED;
+  --color-blue-200: #C3C8D9;
+  --color-blue-300: #9FA6C1;
+  --color-blue-400: #5F6B97;
+  --color-blue-500: #1A2B6B; /* = Navy 500 */
+  --color-blue-600: #18275F;
+  --color-blue-700: #162251;
+  --color-blue-800: #131E43;
+  --color-blue-900: #111935;
+
+  /* cyan / teal / sky / indigo / violet / purple / pink / rose / fuchsia / yellow
+     → Mapped to Navy or Green family (no exotic colors) */
+  --color-cyan-500: #5F6B97;     /* → Navy 400 */
+  --color-cyan-600: #1A2B6B;
+  --color-cyan-700: #18275F;
+  --color-cyan-800: #131E43;
+  --color-cyan-900: #111935;
+  --color-teal-500:  #99F36C;    /* → Green 500 */
+  --color-teal-600:  #85D360;
+  --color-sky-500:   #1A2B6B;    /* → Navy 500 */
+  --color-sky-600:   #18275F;
+  --color-sky-700:   #162251;
+  --color-indigo-500: #1A2B6B;
+  --color-indigo-600: #18275F;
+  --color-indigo-700: #162251;
+  --color-indigo-800: #131E43;
+  --color-indigo-900: #111935;
+  --color-violet-500: #1A2B6B;   /* → Navy 500 (Dusk-related) */
+  --color-violet-600: #18275F;
+  --color-violet-700: #162251;
+  --color-violet-800: #131E43;
+  --color-violet-900: #3D2B6B;   /* Dusk endpoint */
+  --color-purple-500: #1A2B6B;
+  --color-purple-600: #18275F;
+  --color-purple-700: #162251;
+  --color-purple-800: #131E43;
+  --color-purple-900: #3D2B6B;
+  --color-pink-500:   #99F36C;    /* For positive emphasis */
+  --color-pink-600:   #85D360;
+  --color-rose-500:   #1A2B6B;
+  --color-rose-600:   #18275F;
+  --color-rose-700:   #162251;
+  --color-fuchsia-500: #99F36C;
+  --color-fuchsia-600: #85D360;
+  --color-yellow-500: #99F36C;   /* → Green 500 */
+  --color-yellow-600: #85D360;
+
+  /* Red is KEPT for actual semantic errors (validation errors) */
+  /* — but tuned to match the brand's cool palette */
+  --color-red-50:  #FDF2F2;
+  --color-red-100: #FCE7E7;
+  --color-red-200: #F8C5C5;
+  --color-red-300: #F09898;
+  --color-red-400: #E85D5D;
+  --color-red-500: #DC2626;
+  --color-red-600: #B91C1C;
+  --color-red-700: #991B1B;
+  --color-red-800: #7F1D1D;
+  --color-red-900: #641515;
+}
+
+/* Default :root — LIGHT THEME (extracted from archive) */
+:root {
+  --bg:         #F6F7F9;
+  --bg-2:       #FFFFFF;
+  --panel:      #FFFFFF;
+  --panel-2:    #EAEBF0;
+  --border:     #D6D8E1;
+  --border-2:   #B8BCCC;
+
+  --text:       #111935;
+  --text-2:     #404559;
+  --text-3:     #6B7494;
+
+  --accent:     #1A2B6B;
+  --accent-2:   #99F36C;
+  --brand:      #1A2B6B;
+  --solar:      #99F36C;
+  --success:    #85D360;
+  --warning:    #f59e0b;
+  --danger:     #ef4444;
+  --info:       #5F6B97;
+
+  --grid-opacity: 0.06;
+  --accent-custom: #99F36C;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[dir="rtl"] body {
+  font-family: 'Cairo', 'Tajawal', 'Inter', system-ui, sans-serif;
+}
+
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-2); }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+
+/* =======================================================================
+   KAD POWER GRADIENTS (from archive — 4 official gradients)
+   ======================================================================= */
+.bg-energy {
+  background: linear-gradient(135deg, #1A2B6B 0%, #99F36C 100%);
+}
+.bg-depth {
+  background: linear-gradient(180deg, #111935 0%, #1A2B6B 100%);
+}
+.bg-glow {
+  background: linear-gradient(135deg, #D4FAC1 0%, #85D360 100%);
+}
+.bg-dusk {
+  background: linear-gradient(135deg, #131E43 0%, #3D2B6B 100%);
+}
+.bg-navy-gradient {
+  background: linear-gradient(135deg, #1A2B6B 0%, #162251 100%);
+}
+.bg-solar-gradient {
+  background: linear-gradient(135deg, #99F36C 0%, #85D360 100%);
+}
+
+/* Engineering blueprint grid (Navy-tempered, 60% neutral rule) */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(26, 43, 107, var(--grid-opacity)) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 43, 107, var(--grid-opacity)) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.bg-blueprint {
+  background-color: var(--bg-2);
+  background-image:
+    linear-gradient(rgba(26, 43, 107, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 43, 107, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(26, 43, 107, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 43, 107, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+}
+
+.brand-glow {
+  box-shadow: 0 0 30px rgba(26, 43, 107, 0.25), 0 0 60px rgba(153, 243, 108, 0.15);
+}
+.solar-glow {
+  box-shadow: 0 0 40px rgba(153, 243, 108, 0.2), 0 0 80px rgba(26, 43, 107, 0.1);
+}
+
+.glass {
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+input, select, textarea, button { outline: none; }
+input:focus, select:focus, textarea:focus { border-color: var(--accent) !important; }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+
+input[type=range] {
+  -webkit-appearance: none;
+  height: 4px;
+  background: var(--border-2);
+  border-radius: 4px;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@keyframes pulse-slow { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes glow-pulse { 0%,100% { box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 30%, transparent); } 50% { box-shadow: 0 0 40px color-mix(in srgb, var(--accent) 50%, transparent); } }
+.animate-pulse-slow { animation: pulse-slow 3s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 12s linear infinite; }
+.animate-glow-pulse { animation: glow-pulse 2.5s ease-in-out infinite; }
+.shimmer { background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 15%, transparent), transparent); background-size: 200% 100%; animation: shimmer 2s linear infinite; }
+
+[dir="rtl"] .rotate-rtl-180 { transform: scaleX(-1); }
+
+.transition-theme, .transition-theme * {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
